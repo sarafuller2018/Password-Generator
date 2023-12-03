@@ -14,19 +14,18 @@ var generatePassword = function () {
   var userChoiceUppercase = window.confirm("Would you like to include a uppercase letter(s)?");
   var userChoiceNumbers = window.confirm("Would you like to include a number(s)?");
   var userChoiceChar = window.confirm("Would you like to include a special character(s)?");
-  var MinLengthQuestion = window.prompt("What is the minimum length for your new password? Type a whole number greater than or equal to 8.");
-  var MaxLengthQuestion = window.prompt("What is the maximum length for your new password? Type a whole number less than or equal to 128.");
+  var userChoiceLength = window.prompt("What is the length for your new password? Type a whole number between 8 and 128.");
 
   if (userChoiceLowercase === false && userChoiceUppercase === false && userChoiceNumbers === false && userChoiceChar === false) {
     alert("You must choose at least one character type!")
   }
 
-  if (MinLengthQuestion < 8) {
-    alert("Please enter a number greater than or equal to 8.")
+  if (userChoiceLength < 8) {
+    alert("Please enter a number between 8 and 128.")
   }
 
-  if (MaxLengthQuestion > 128) {
-    alert("Please enter a number less than or equal to 128.")
+  if (userChoiceLength > 128) {
+    alert("Please enter a number between 8 and 128.")
   }
 
   var characterPool = {
@@ -34,44 +33,51 @@ var generatePassword = function () {
     Uppercase: userChoiceUppercase,
     Numbers: userChoiceNumbers,
     SpecCharacters: userChoiceChar,
-    Min: MinLengthQuestion,
-    Max: MaxLengthQuestion
+    Length: userChoiceLength
   }
   console.log(characterPool);
  
-// this is where i am lost
-// some type of array??? 
-// ??? var randomPasswordCharacters = ["abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ", "1234567890", "!@#$%^&*()_+[]{}/><;:"];
+var characterOptions = [];
 
-  for (var i = 0; i < characterPool.Max; i++) {
-    if (userChoiceLowercase) {
-      const lowercaseAlphabet = 'abcdefghijklmnopqrstuvwxyz';
-      const randomLowercaseLetter = Math.floor(Math.random() * lowercaseAlphabet.length);
-      var storeLower = lowercaseAlphabet[randomLowercaseLetter];
-      console.log(storeLower);
-    }
-  
-    if (userChoiceUppercase) {
-      const uppercaseAlphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-      const randomUppercaseLetter = Math.floor(Math.random() * uppercaseAlphabet.length);
-      var storeUpper = uppercaseAlphabet[randomUppercaseLetter]
-      console.log(storeUpper);
-    }
-  
-    if (userChoiceNumbers) {
-      const numbers = '1234567890';
-      const randomNumbers = Math.floor(Math.random() * numbers.length);
-      var storeNumbers = numbers[randomNumbers];
-      console.log(storeNumbers);
-    }
-  
-    if (userChoiceChar) {
-      const specialCharacter = '!@#$%^&*()_+[]{}/><;:';
-      const randomSpecialCharacter = Math.floor(Math.random() * specialCharacter.length);
-      var storeChar = specialCharacter[randomSpecialCharacter]
-      console.log(storeChar);
-  }
+if (userChoiceLowercase) {
+  const lowercaseAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+  for (var i = 0; i < lowercaseAlphabet.length; i++) {
+  characterOptions.push(lowercaseAlphabet[i]);
 }
+console.log(characterOptions);
+}
+
+if (userChoiceUppercase) {
+  const uppercaseAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  for (var i = 0; i < uppercaseAlphabet.length; i++) {
+  characterOptions.push(uppercaseAlphabet[i]);
+}
+console.log(characterOptions);
+}
+
+if (userChoiceNumbers) {
+  const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+  for (var i = 0; i < numbers.length; i++) {
+  characterOptions.push(numbers[i]);
+}
+console.log(characterOptions);
+}
+
+if (userChoiceChar) {
+  const specialCharacter = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', ']', ';', '.', '?', '/', ':']
+  for (var i = 0; i < specialCharacter.length; i++) {
+  characterOptions.push(specialCharacter[i]);
+}
+console.log(characterOptions);
+}
+
+for (var i = 0; i < characterPool.Length; i++) {
+    const passwordRandomizer = Math.floor(Math.random() * characterOptions.length);
+    var finalPassword = "";
+    finalPassword += characterOptions[passwordRandomizer];
+  }
+
+  return finalPassword;
 }
 
 // Add event listener to generate button
