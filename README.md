@@ -1,6 +1,6 @@
 # Password-Generator
 
-add live link here 
+https://sarafuller2018.github.io/Password-Generator/ 
 
 ## Description
 
