@@ -10,30 +10,34 @@ function writePassword() {
 }
 
 var generatePassword = function () {
-// Collects and stores user input
+  // Collects and stores user input
   var userChoiceLowercase = window.confirm("Would you like to include a lowercase letter(s)?");
   var userChoiceUppercase = window.confirm("Would you like to include a uppercase letter(s)?");
   var userChoiceNumbers = window.confirm("Would you like to include a number(s)?");
   var userChoiceChar = window.confirm("Would you like to include a special character(s)?");
-  var userChoiceLength = window.prompt("What is the length for your new password? Type a whole number between 8 and 128.");
 
-// Validates that the user input meets minimum requirements for password
+
+  // Validates that the user input meets minimum character type requirements for password
   if (userChoiceLowercase === false && userChoiceUppercase === false && userChoiceNumbers === false && userChoiceChar === false) {
     alert("You must choose at least one character type!");
-    return
+    return " "
   }
 
+  // Collects and stores user input for length
+  var userChoiceLength = window.prompt("What is the length for your new password? Type a whole number between 8 and 128.");
+
+  // Validates that the user input meets minimum and maximum length requirements for password
   if (userChoiceLength < 8) {
     alert("Please enter a number between 8 and 128.")
-    return
+    return " "
   }
 
   if (userChoiceLength > 128) {
     alert("Please enter a number between 8 and 128.")
-    return
+    return " "
   }
 
-// This object stores the user input for easy access in the console
+  // This object stores the user input for easy access in the console
   var characterPool = {
     Lowercase: userChoiceLowercase,
     Uppercase: userChoiceUppercase,
