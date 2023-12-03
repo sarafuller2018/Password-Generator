@@ -17,15 +17,18 @@ var generatePassword = function () {
   var userChoiceLength = window.prompt("What is the length for your new password? Type a whole number between 8 and 128.");
 
   if (userChoiceLowercase === false && userChoiceUppercase === false && userChoiceNumbers === false && userChoiceChar === false) {
-    alert("You must choose at least one character type!")
+    alert("You must choose at least one character type!");
+    return
   }
 
   if (userChoiceLength < 8) {
     alert("Please enter a number between 8 and 128.")
+    return
   }
 
   if (userChoiceLength > 128) {
     alert("Please enter a number between 8 and 128.")
+    return
   }
 
   var characterPool = {
@@ -36,45 +39,47 @@ var generatePassword = function () {
     Length: userChoiceLength
   }
   console.log(characterPool);
- 
-var characterOptions = [];
 
-if (userChoiceLowercase) {
-  const lowercaseAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
-  for (var i = 0; i < lowercaseAlphabet.length; i++) {
-  characterOptions.push(lowercaseAlphabet[i]);
-}
-console.log(characterOptions);
-}
+  var characterOptions = [];
 
-if (userChoiceUppercase) {
-  const uppercaseAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  for (var i = 0; i < uppercaseAlphabet.length; i++) {
-  characterOptions.push(uppercaseAlphabet[i]);
-}
-console.log(characterOptions);
-}
+  if (userChoiceLowercase) {
+    const lowercaseAlphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+    for (var i = 0; i < lowercaseAlphabet.length; i++) {
+      characterOptions.push(lowercaseAlphabet[i]);
+    }
+    console.log(characterOptions);
+  }
 
-if (userChoiceNumbers) {
-  const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-  for (var i = 0; i < numbers.length; i++) {
-  characterOptions.push(numbers[i]);
-}
-console.log(characterOptions);
-}
+  if (userChoiceUppercase) {
+    const uppercaseAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    for (var i = 0; i < uppercaseAlphabet.length; i++) {
+      characterOptions.push(uppercaseAlphabet[i]);
+    }
+    console.log(characterOptions);
+  }
 
-if (userChoiceChar) {
-  const specialCharacter = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', ']', ';', '.', '?', '/', ':']
-  for (var i = 0; i < specialCharacter.length; i++) {
-  characterOptions.push(specialCharacter[i]);
-}
-console.log(characterOptions);
-}
+  if (userChoiceNumbers) {
+    const numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    for (var i = 0; i < numbers.length; i++) {
+      characterOptions.push(numbers[i]);
+    }
+    console.log(characterOptions);
+  }
 
-for (var i = 0; i < characterPool.Length; i++) {
+  if (userChoiceChar) {
+    const specialCharacter = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '+', '=', ']', ';', '.', '?', '/', ':']
+    for (var i = 0; i < specialCharacter.length; i++) {
+      characterOptions.push(specialCharacter[i]);
+    }
+    console.log(characterOptions);
+  }
+
+  var finalPassword = "";
+  for (var i = 0; i < characterPool.Length; i++) {
     const passwordRandomizer = Math.floor(Math.random() * characterOptions.length);
-    var finalPassword = "";
     finalPassword += characterOptions[passwordRandomizer];
+
+    console.log(finalPassword)
   }
 
   return finalPassword;
