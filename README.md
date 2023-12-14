@@ -24,4 +24,4 @@ Please refer to the LICENSE in the repo.
 
 ## Screenshot of Website
 
-![Alt text](./Screenshot%20of%20Password%20Generator.png)
+![Alt text](./Assets/Screenshot%20of%20Password%20Generator.png)
